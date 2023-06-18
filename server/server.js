@@ -81,7 +81,9 @@ client.connect(function(err) {
       return console.error('could not connect to postgres', err);
     }});
     console.log("Verbunden");
-        let sql = "INSERT INTO Prompt VALUES('"+req.body.prompt+"','"+completion.data.choices[0].message+"','"+name+"','" +task+"');";
+    const data = await response.json();
+    const parsedData = data.bot.content.trim();
+        let sql = "INSERT INTO Prompt VALUES('"+req.body.prompt+"','"+parsedData+"','"+name+"','" +task+"');";
         console.log(sql);
         client.query(sql, function(err, result) {
             if(err) {
