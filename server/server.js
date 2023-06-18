@@ -75,7 +75,7 @@ app.post('/', async (req, res) => {
             //bot: response.data.choices[0].text
             bot:completion.data.choices[0].message
         })
-       /* var client = new pg.Client(conString);
+       var client = new pg.Client(conString);
 client.connect(function(err) {
     if(err) {
       return console.error('could not connect to postgres', err);
@@ -90,8 +90,8 @@ client.connect(function(err) {
             //console.log(result.rows[0].theTime);
             // >> output: 2018-08-23T14:02:57.117Z
             client.end();
-          });*/
-          var client = new pg.Client(conString)
+          });
+          /*var client = new pg.Client(conString)
           client.connect(function (err) {
               if (err) {
                   return console.error('could not connect to postgres', err);
@@ -107,7 +107,7 @@ client.connect(function(err) {
                   console.log(result.rows);
               }
               client.end();
-            });
+            });*/
     } catch (error) {
         console.log(error);
         res.status(500).send({error});
