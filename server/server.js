@@ -9,7 +9,7 @@ const require = createRequire(import.meta.url);
 //const sqlite3 = require('sqlite3').verbose();
 var pg = require('pg');
 //var conString ="postgres://jjcvxmos:5D9o-SZWVWJRb5a8VPaWojzwHJygUjQz@tyke.db.elephantsql.com/jjcvxmos";
-var conString = "postgres://chatbot_data_user:8gsPtweIx6zN8enHPuBGq5wGMr0rGxSK@dpg-ci6pdv18g3nfucc98p0g-a.frankfurt-postgres.render.com/chatbot_data?ssl=true";
+var conString = process.env.URL;
 
 var name = "";
 var task = "";
