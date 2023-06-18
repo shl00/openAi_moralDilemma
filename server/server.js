@@ -8,7 +8,9 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 //const sqlite3 = require('sqlite3').verbose();
 var pg = require('pg');
-var conString ="postgres://jjcvxmos:5D9o-SZWVWJRb5a8VPaWojzwHJygUjQz@tyke.db.elephantsql.com/jjcvxmos";
+//var conString ="postgres://jjcvxmos:5D9o-SZWVWJRb5a8VPaWojzwHJygUjQz@tyke.db.elephantsql.com/jjcvxmos";
+var conString = "postgres://chatbot_data_user:8gsPtweIx6zN8enHPuBGq5wGMr0rGxSK@dpg-ci6pdv18g3nfucc98p0g-a.frankfurt-postgres.render.com/chatbot_data?ssl=true";
+
 var name = "";
 var task = "";
 dotenv.config();
@@ -73,7 +75,7 @@ app.post('/', async (req, res) => {
             //bot: response.data.choices[0].text
             bot:completion.data.choices[0].message
         })
-        var client = new pg.Client(conString);
+       /* var client = new pg.Client(conString);
 client.connect(function(err) {
     if(err) {
       return console.error('could not connect to postgres', err);
@@ -88,8 +90,24 @@ client.connect(function(err) {
             //console.log(result.rows[0].theTime);
             // >> output: 2018-08-23T14:02:57.117Z
             client.end();
+          });*/
+          var client = new pg.Client(conString)
+          client.connect(function (err) {
+              if (err) {
+                  return console.error('could not connect to postgres', err);
+              }
           });
-
+          console.log("Verbunden!")
+          let sql = "INSERT INTO Prompt VALUES('"+req.body.prompt+"','"+response.data.choices[0].text+"','"+name+"','" +task+"');";
+          client.query(sql, function(err, result) {
+              if(err) {
+                return console.error('error running query', err);
+              }
+              else{
+                  console.log(result.rows);
+              }
+              client.end();
+            });
     } catch (error) {
         console.log(error);
         res.status(500).send({error});
