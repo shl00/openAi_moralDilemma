@@ -63,7 +63,7 @@ app.post('/', async (req, res) => {
         res.status(200).send({
             //bot: response.data.choices[0].text
             bot: completion.data.choices[0].message,
-            test: history
+            test: prompt
         })
         var client = new pg.Client(conString);
         client.connect(function (err) {
