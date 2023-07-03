@@ -10,9 +10,10 @@ const require = createRequire(import.meta.url);
 var pg = require('pg');
 //var conString ="postgres://jjcvxmos:5D9o-SZWVWJRb5a8VPaWojzwHJygUjQz@tyke.db.elephantsql.com/jjcvxmos";
 var conString = process.env.URL;
-
+var messages = [];
 var name = "";
 var task = "";
+
 dotenv.config();
 
 
@@ -47,15 +48,19 @@ app.post('/', async (req, res) => {
             presence_penalty: 0,
         
         });*/
+        messages.push({role: "user", content: prompt});
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            messages: [
+            messages:messages
+            /* [
                 {
                     role: 'user',
-                    content: `${prompt}`
+                    //content: `${prompt}`
+                    content
                 },
-            ]
+            ]*/
         })
+        messages.push({"role": "assistant", "content": completion.data.choices[0].message.content})
         res.status(200).send({
             //bot: response.data.choices[0].text
             bot: completion.data.choices[0].message
