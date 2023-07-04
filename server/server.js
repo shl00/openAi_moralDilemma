@@ -36,7 +36,7 @@ app.get('/', async (req, res) => {
 app.post('/', async (req, res) => {
     try {
         //const prompt = await req.body.prompt.json();
-        JSON.parse(req.body.prompt);
+        prompt = JSON.parse(req.body.prompt);
         name = req.body.na;
         task = req.body.ta
         /*const response = await openai.createCompletion({
@@ -60,8 +60,7 @@ app.post('/', async (req, res) => {
       
         res.status(200).send({
             //bot: response.data.choices[0].text
-            bot: ( ""+completion.data.choices[0].message + prompt[0].toString()),
-            test: prompt
+            bot: (completion.data.choices[0].message),
         })
         var client = new pg.Client(conString);
         client.connect(function (err) {
