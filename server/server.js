@@ -51,13 +51,10 @@ app.post('/', async (req, res) => {
         
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            messages: prompt
-            /* [
-                {
-                    role: 'user',
-                    //content: `${prompt}`
-                },
-            ]*/
+            messages: 
+             [
+                prompt
+            ]
         })
       
         res.status(200).send({
