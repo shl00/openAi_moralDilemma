@@ -15,8 +15,19 @@ var name = "";
 var task = "";
 
 dotenv.config();
-
-
+let user ;
+let bot;
+function getMessage(){
+    var arrN =[];
+    let a=0,b=0;
+    for(let i = 0;a<user.length;i+=2 ){
+        arrN[i]=({role: 'user', content: user[a++]})
+    }
+    for(let i = 1;b<bot.length;i+=2 ){
+        arrN[i]=({role: 'assistant', content: bot[b++]})
+    }
+    return arrN;
+}
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
@@ -36,7 +47,9 @@ app.get('/', async (req, res) => {
 app.post('/', async (req, res) => {
     try {
         //const prompt = await req.body.prompt.json();
-        const prompt = JSON.parse(req.body.prompt);
+        //const prompt = JSON.parse(req.body.prompt);
+        user= JSON.parse(req.body.u);
+        bot = JSON.parse(req.body.b);
         name = req.body.na;
         task = req.body.ta
         /*const response = await openai.createCompletion({
@@ -53,9 +66,7 @@ app.post('/', async (req, res) => {
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
             messages: 
-             [
-                prompt
-            ]
+            getMessage()
         })
       
         res.status(200).send({
