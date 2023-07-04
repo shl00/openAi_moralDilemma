@@ -35,7 +35,7 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     try {
-        const prompt = JSON.parse(JSON.stringify(req.body.prompt));
+        const prompt = await req.body.prompt.json();//JSON.parse(JSON.stringify(req.body.prompt));
         name = req.body.na;
         task = req.body.ta
         /*const response = await openai.createCompletion({
