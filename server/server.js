@@ -21,10 +21,10 @@ function getMessage(){
     var arrN =[];
     let a=0,b=0;
     for(let i = 0;a<user.length;i+=2 ){
-        arrN[i]=(user[a++])
+        arrN[i]=(JSON.parse(user[a++]))
     }
     for(let i = 1;b<bot.length;i+=2 ){
-        arrN[i]=(bot[b++])
+        arrN[i]=(JSON.parse(bot[b++]))
     }
     return arrN;
 }
@@ -96,7 +96,7 @@ app.post('/', async (req, res) => {
     
     } catch (error) {
         console.log(error);
-        res.status(500).send({ error });
+        res.status(500).send({error});
     }
 
 
