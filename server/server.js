@@ -15,8 +15,8 @@ var name = "";
 var task = "";
 
 dotenv.config();
-let user ;
-let bot;
+let user =[] ;
+let bot =[];
 function getMessage(){
     var arrN =[];
     let a=0,b=0;
@@ -49,7 +49,10 @@ app.post('/', async (req, res) => {
         //const prompt = await req.body.prompt.json();
         //const prompt = JSON.parse(req.body.prompt);
         user= JSON.parse(req.body.u);
-        bot = JSON.parse(req.body.b);
+        console.log(user)
+        if(user.length >1){
+         bot = JSON.parse(req.body.b);
+        }
         name = req.body.na;
         task = req.body.ta
         /*const response = await openai.createCompletion({
@@ -95,6 +98,7 @@ app.post('/', async (req, res) => {
     
     } catch (error) {
         console.log(error);
+        //console.log(user)
         res.status(500).send({error});
     }
 
