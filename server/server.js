@@ -68,7 +68,7 @@ app.post('/', async (req, res) => {
         let b = getMessage();
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            messages: b,
+            messages: [b],
         })
         
         res.status(200).send({
@@ -98,7 +98,7 @@ app.post('/', async (req, res) => {
     
     } catch (error) {
         console.log(error);
-        //console.log(user)
+        console.log(getMessage())
         res.status(500).send({error});
     }
 
