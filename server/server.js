@@ -21,10 +21,10 @@ function getMessage(){
     var arrN =[];
     let a=0,b=0;
     for(let i = 0;a<user.length;i+=2 ){
-        arrN[i]=({role: 'user', content: user[a++]})
+        arrN[i]=(user[a++])
     }
     for(let i = 1;b<bot.length;i+=2 ){
-        arrN[i]=({role: 'assistant', content: bot[b++]})
+        arrN[i]=(bot[b++])
     }
     return arrN;
 }
