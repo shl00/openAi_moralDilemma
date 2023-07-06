@@ -62,13 +62,12 @@ app.post('/', async (req, res) => {
             presence_penalty: 0,
         
         });*/
-        
+        let b = getMessage();
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            messages: 
-            getMessage()
+            messages: b,
         })
-      
+        
         res.status(200).send({
             //bot: response.data.choices[0].text
             bot: (completion.data.choices[0].message),
