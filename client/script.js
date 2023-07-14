@@ -25,7 +25,7 @@ function isValid(input) {
 
 name = window.prompt("Geben Sie Ihre E-Mail-Adresse ein:");
 
-task = taskNames[3];
+task = taskNames[0];
 function loader(element) {
   element.textContent = '';
 
@@ -135,7 +135,7 @@ const handleSubmit = async (e) => {
 
 
 form.addEventListener('submit', (e) => {
-  if (name.trim() != "" && isValid(name) || true) {
+  if (name.trim() != "" && isValid(name)) {
     handleSubmit(e);
   }
   else {
